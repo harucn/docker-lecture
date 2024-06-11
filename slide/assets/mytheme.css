@@ -1,0 +1,18 @@
+/* @theme mytheme */
+
+@import "gaia";
+
+section.title {
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+section.title h1 {
+  padding-top: 20%;
+  text-align: center;
+}
+
+footer {
+  text-align: right;
+}
