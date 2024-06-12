@@ -19,7 +19,7 @@ _class: "title"
 ## アジェンダ
 
 - Docker とは
-- ハンズオン
+- 実際に動かして確認してみよう
 - Dockerfileのベストプラクティス
 - Docker 活用例
 
@@ -46,7 +46,7 @@ _class: "title"
 - クライアント/サーバーモデルを採用
 
 - Docker クライアントである docker コマンドが Docker デーモン(dockerd)に通信してコンテナの操作を行う
-<!-- containerd とか runc の説明は省く -->
+
 - Docker デーモンが提供している REST API を利用している
   - [Docker Engine API Document](https://docs.docker.com/engine/api/v1.45/)
   <!-- TODO: figure by mermaid -->
@@ -73,7 +73,6 @@ _class: "title"
   - Docker Hub
   - AWS ECR
   - etc...
-  <!-- - 他のチームメンバーや開発者が簡単に同じ環境を再現可能 -->
 - タグを使ってのバージョン管理も可能
 
 ---
@@ -86,17 +85,10 @@ _class: "title"
 
 ---
 
-<!--
-_class: "title"
--->
-
 ## 実際に動かして確認してみよう
 
----
-
-## 実際に動かして確認してみよう
-
-- repo
+- サンプルコード
+  - https://github.com/haruto-takeuchi/docker-lecture
 
 ---
 
@@ -138,7 +130,7 @@ $ tree .
 <!--
 _class: "title"
 -->
-# Dockerfile のベストプラクティスとはイメージサイズの削減
+# Dockerfile の ベストプラクティス は　イメージサイズの削減
 
 ---
 
