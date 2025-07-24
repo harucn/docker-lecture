@@ -9,6 +9,7 @@ _class: "title"
 -->
 
 # 基礎から学ぶ Docker 入門
+## ~ Docker大解剖 ~
 
 <!-- # 魔翻訳 Docker Docs -->
 
@@ -100,7 +101,7 @@ _class: "title"
 <!-- - サンプルコード
   - https://github.com/haruto-takeuchi/docker-lecture -->
 
-https://github.com/haruto-takeuchi/docker-lecture
+https://github.com/harucn/docker-lecture
 
 ---
 
