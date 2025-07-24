@@ -1,14 +1,21 @@
-FROM ubuntu:latest
+FROM node:22
 
-RUN mkdir -p /usr/local/sample
-RUN mkdir -p /usr/local/dummy
+WORKDIR /usr/local/app
 
-WORKDIR /usr/local/sample
+# package.json, package-lock.jsonをコピー
+COPY package*.json ./
 
-# hello.sh を作成
-RUN echo "#!/bin/bash" > ./hello.sh
-RUN echo "echo Hello, World!" >> ./hello.sh
-RUN echo "echo HELLO, WORLD!" >> ./hello.sh
+# 依存関係をインストール
+RUN npm install
 
-# hello.sh に実行権限を付与
-RUN chmod +x hello.sh
+# src ディレクトリ作成
+RUN mkdir src
+
+# アプリケーションのコードをコピー
+COPY src/ ./src
+
+# アプリケーションで使用するポートを開ける
+EXPOSE 3000
+
+# アプリケーション起動
+ENTRYPOINT [ "npm", "start" ]
