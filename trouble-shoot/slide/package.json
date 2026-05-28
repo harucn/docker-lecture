@@ -1,0 +1,9 @@
+{
+  "name": "slide",
+  "version": "1.0.0",
+  "scripts": {},
+  "license": "ISC",
+  "dependencies": {
+    "@marp-team/marp-cli": "^3.4.0"
+  }
+}
