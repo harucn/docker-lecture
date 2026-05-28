@@ -1,18 +1,15 @@
 {
-  "name": "slide",
+  "name": "image-lesson-slide",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "marp ./assets/slides.md --theme ./assets/mytheme.css --allow-local-files --pdf"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/haruto-takeuchi/docker-lecture.git"
   },
-  "author": "",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "@marp-team/marp-cli": "^3.4.0"
   }
 }

@@ -6,8 +6,16 @@ settings:
 
 importers:
 
-  .:
-    dependencies:
+  .: {}
+
+  image-lesson/slide:
+    devDependencies:
+      '@marp-team/marp-cli':
+        specifier: ^3.4.0
+        version: 3.4.0
+
+  trouble-shoot/slide:
+    devDependencies:
       '@marp-team/marp-cli':
         specifier: ^3.4.0
         version: 3.4.0

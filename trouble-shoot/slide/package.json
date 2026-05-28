@@ -1,9 +1,11 @@
 {
-  "name": "slide",
+  "name": "trouble-shoot-slide",
   "version": "1.0.0",
-  "scripts": {},
+  "scripts": {
+    "build": "marp ./assets/slides.md --theme ./assets/mytheme.css --allow-local-files --pdf"
+  },
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "@marp-team/marp-cli": "^3.4.0"
   }
 }
