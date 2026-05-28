@@ -54,6 +54,31 @@ _class: "title"
 
 ---
 
+## クライアント・サーバーモデルを体感する
+
+**1. 通常時: 接続先を確認**
+```sh
+$ docker context ls
+$ docker ps
+```
+
+**2. dockerd を止める**
+
+**3. daemon が止まった状態で叩く**
+```sh
+$ docker ps
+# Cannot connect to the Docker daemon at unix:///...
+# Is the docker daemon running?
+```
+
+**4. dockerd を再起動して復旧確認**
+```sh
+$ docker context ls
+$ docker ps
+```
+
+---
+
 ## 用語の整理
 
 - Dockerfile: コンテナの作成手順書
