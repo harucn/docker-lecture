@@ -1,6 +1,5 @@
 const http = require("http");
 
-// 🐛 バグあり: localhost はフロントエンドコンテナ自身を指すため、バックエンドに届かない
 const BACKEND_URL = "http://localhost:4000";
 
 const server = http.createServer((req, res) => {

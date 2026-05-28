@@ -2,7 +2,7 @@
 
 ## 状況
 
-> 「先輩から引き継いだ Dockerfile でビルドしたら、イメージが 2GB 超えてる。push も pull もめちゃくちゃ遅い」
+> 「先輩から引き継いだ Dockerfile でビルドしたら、イメージが 2GB 近くある。push も pull もめちゃくちゃ遅い」
 
 ## 再現手順
 
@@ -17,7 +17,8 @@ docker image ls scenario-04
 
 ## チャレンジ
 
-イメージが肥大化している原因を特定し、`Dockerfile` と `.dockerignore` を改善してください。
+肥大化の原因を特定し、`Dockerfile` と `.dockerignore` を改善してください。
+最終的に `node dist/index.js` で動くイメージを作ることがゴールです。
 
 ## ヒント
 
@@ -34,16 +35,28 @@ docker history scenario-04
 <details>
 <summary>ヒント 2</summary>
 
-`COPY . .` で何がコピーされているか確認しましょう。
-`node_modules/` や `.git/` が含まれていませんか？
-`.dockerignore` ファイルを作成してみましょう。
+`package.json` の `dependencies` と `devDependencies` の違いを確認してください。
+`typescript` や `@types/*` は本番環境では不要です。
+
+```bash
+# 本番依存だけインストールするには
+npm ci --omit=dev
+```
 </details>
 
 <details>
 <summary>ヒント 3</summary>
 
-ビルドツール（`gcc`, `make` など）は実行時には不要です。
-マルチステージビルドを使って、本番イメージには実行に必要なものだけを含めましょう。
+マルチステージビルドを使うと、ビルド専用のステージと本番用のステージを分けられます。
+
+```dockerfile
+FROM node:26-alpine AS builder
+# TypeScript のビルドはここで行う
+
+FROM node:26-alpine AS runner
+# 実行に必要なものだけをここにコピーする
+COPY --from=builder /app/dist ./dist
+```
 </details>
 
 ## 解答
@@ -52,7 +65,8 @@ docker history scenario-04
 
 ## 学習ポイント
 
-- `.dockerignore` で不要なファイルを除外する
-- マルチステージビルドでビルドツールを本番イメージに含めない
+- `dependencies` と `devDependencies` の使い分け（TypeScript などのビルドツールは後者へ）
+- マルチステージビルドで「ビルドに使うもの」を本番イメージから除外する
+- `.dockerignore` で `node_modules` や `.git` を除外する
+- `node:26`（Debian）vs `node:26-alpine` のサイズ差
 - `apt-get` 後は `rm -rf /var/lib/apt/lists/*` でキャッシュを削除する
-- イメージサイズはセキュリティリスクにもなる（攻撃対象が増える）

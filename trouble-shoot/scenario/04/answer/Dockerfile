@@ -1,20 +1,24 @@
 # ✅ 修正済み: マルチステージビルド + .dockerignore の活用
 
-# --- ビルドステージ ---
+# --- ビルドステージ（devDependencies + TypeScript コンパイラを使う）---
 FROM node:26-alpine AS builder
 
 WORKDIR /app
-COPY package*.json ./
-RUN npm install
 
-# --- 本番ステージ ---
-FROM node:26-alpine
+COPY package*.json tsconfig.json ./
+RUN npm ci
+
+COPY src/ ./src/
+RUN npm run build
+
+# --- 本番ステージ（実行に必要なものだけ）---
+FROM node:26-alpine AS runner
 
 WORKDIR /app
 
-# ビルド成果物だけをコピー（ビルドツールは含まない）
-COPY --from=builder /app/node_modules ./node_modules
-COPY src/ ./src/
-COPY package.json .
+COPY package*.json ./
+RUN npm ci --omit=dev
 
-CMD ["node", "src/app.js"]
+COPY --from=builder /app/dist ./dist
+
+CMD ["node", "dist/index.js"]

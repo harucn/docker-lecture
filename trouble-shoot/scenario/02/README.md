@@ -46,7 +46,7 @@ docker compose exec app ss -tlnp
 <details>
 <summary>ヒント 3</summary>
 
-`src/app.py` のバインドアドレスを確認してください。
+`src/app.js` のバインドアドレスを確認してください。
 コンテナ外からアクセスするには `0.0.0.0` でリッスンする必要があります。
 </details>
 

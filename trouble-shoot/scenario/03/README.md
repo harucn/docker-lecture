@@ -35,7 +35,7 @@ docker compose exec frontend curl http://backend:4000
 <details>
 <summary>ヒント 2</summary>
 
-`frontend/app.py` のバックエンド URL を確認してください。
+`frontend/app.js` のバックエンド URL を確認してください。
 コンテナ間通信では `localhost` はそのコンテナ自身を指します。
 </details>
 
