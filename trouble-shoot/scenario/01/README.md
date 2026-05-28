@@ -40,21 +40,31 @@ docker logs s01
 docker inspect s01 --format='{{.State.ExitCode}}'
 ```
 
-exit code 127 はどういう意味でしょうか？
+exit code 1 はどういう意味でしょうか？
+
 </details>
 
 <details>
 <summary>ヒント 3</summary>
 
-`Dockerfile` の `CMD` に注目してください。起動しようとしているファイル名は本当に存在しますか？
+アプリが必要としている環境変数を確認してください。
+環境変数は `Dockerfile` の `ENV` で設定するか、`docker run -e` で渡すことができます。
+
 </details>
 
 ## 解答
 
 `answer/Dockerfile` を参照してください。
 
+## クリーンアップ
+
+```bash
+docker rm -f s01
+docker rmi scenario-01
+```
+
 ## 学習ポイント
 
-- `exit code 1`（アプリエラー）と `exit code 127`（コマンドが見つからない）の違い
+- `exit code 1`（アプリが意図的に終了）と `exit code 127`（コマンドが見つからない）の違い
 - `docker logs` でエラー内容を確認する習慣
-- `--restart=always` の罠（クラッシュループしていることに気づきにくい）
+- 環境変数の渡し方: `Dockerfile` の `ENV` vs `docker run -e` vs `--env-file`

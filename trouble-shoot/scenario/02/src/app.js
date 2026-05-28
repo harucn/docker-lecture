@@ -5,6 +5,6 @@ const server = http.createServer((req, res) => {
   res.end("Hello from scenario-02!\n");
 });
 
-server.listen(8080, "127.0.0.1", () => {
-  console.log("Server running on 127.0.0.1:8080");
+server.listen(8080, "0.0.0.0", () => {
+  console.log("Server running on port 8080");
 });

@@ -2,7 +2,7 @@
 
 ## 状況
 
-> 「先輩から引き継いだ Dockerfile でビルドしたら、イメージが 2GB 近くある。push も pull もめちゃくちゃ遅い」
+> 「先輩から引き継いだ Dockerfile でビルドしたら、イメージがデカすぎる。push も pull もめちゃくちゃ遅い」
 
 ## 再現手順
 
@@ -62,6 +62,12 @@ COPY --from=builder /app/dist ./dist
 ## 解答
 
 `answer/` を参照してください。
+
+## クリーンアップ
+
+```bash
+docker rmi scenario-04
+```
 
 ## 学習ポイント
 
