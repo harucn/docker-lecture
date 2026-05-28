@@ -138,6 +138,28 @@ https://github.com/harucn/docker-lecture
 
 （再登場）[Docker Image 仕様](https://github.com/moby/docker-image-spec?tab=readme-ov-file)より
 
+---
+
+## docker history でレイヤを確認する
+
+```sh
+$ docker history sample-image:1.0.0
+```
+
+```
+IMAGE          CREATED BY                                      SIZE
+b1c2d3e4f5a6   ENTRYPOINT ["npm" "start"]                      0B
+<missing>      COPY src/ ./src                                 371B
+<missing>      RUN mkdir src                                   0B
+<missing>      RUN npm install                                 4.71MB
+<missing>      COPY package*.json ./                           692B
+<missing>      WORKDIR /usr/local/app                          0B
+<missing>      CMD ["node"]                                    0B
+...
+```
+
+Dockerfile の命令が1行 = 1レイヤに対応している
+
 <!-- ---
 
 ## Docker Compose -->
